@@ -25,9 +25,26 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
+#-------------------------
+
+def print_with_initial(names)
+  puts "What letter: "
+  letter = gets.chomp
+  names.each_with_index { |student, index|  if student[:name][0,1] == letter then puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)" end }
+end
+
+def print_shorter_than_12(names)
+  names.each_with_index { |student, index| if student[:name].length < 12 then puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)" end }
+end
+
+
+
+
+
+
 students = input_students
 print_header
-print(students)
+print_shorter_than_12(students)
 print_footer(students)
 
 

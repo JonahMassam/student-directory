@@ -1,6 +1,6 @@
 # student-directory
 
-The student directpry script allows you to manage the list of students.
+The student directory script allows you to manage the list of students.
 
 ## How to use
 

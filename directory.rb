@@ -37,14 +37,20 @@ def print_shorter_than_12(names)
   names.each_with_index { |student, index| if student[:name].length < 12 then puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)" end }
 end
 
-
+def print_using_while(names)
+  counter = 0
+  while counter < names.length
+    puts "#{counter}: #{names[counter][:name]} (#{names[counter][:cohort]} cohort)"
+    counter += 1
+  end
+end
 
 
 
 
 students = input_students
 print_header
-print_shorter_than_12(students)
+print_using_while(students)
 print_footer(students)
 
 

@@ -1,4 +1,7 @@
 # let's put all students into an array
+
+@box_size = 50
+
 def input_students()
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -19,16 +22,19 @@ def input_students()
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(@box_size, "-")
+  puts " "
 end
 
 def print(names)
-  names.each_with_index { |student, index| puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)" }
+  puts "-" * @box_size
+  names.each_with_index { |student, index| puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)".center(@box_size, "-") }
+  puts "-" * @box_size
+  puts ""
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students."
 end
 
 #-------------------------
@@ -56,7 +62,7 @@ end
 
 students = input_students
 print_header
-print_using_while(students)
+print(students)
 print_footer(students)
 
 

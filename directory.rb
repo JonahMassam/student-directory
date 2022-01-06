@@ -5,7 +5,13 @@ def input_students()
   students = []
   name = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: :january }
+    puts "Hobby:"
+    hobby = gets.chomp
+    puts "Country of birth:"
+    cob = gets.chomp
+    puts "Height"
+    height = gets.chomp
+    students << {name: name, cohort: :january, hobby: hobby , birth_country: cob, height: height }
     puts "There is now #{students.count} students"
     name = gets.chomp
   end

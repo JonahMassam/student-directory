@@ -34,7 +34,8 @@ def print(names)
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students."
+  names.count == 1 ? test = "" : test = "s"
+  puts "Overall, we have #{names.count} great student#{test}."
 end
 
 #-------------------------
@@ -58,11 +59,28 @@ def print_using_while(names)
 end
 
 
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Input Students"
+    puts "2. Show Students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit
+    else 
+      puts "Unknown command"
+    end
+  end
+end
 
 
-students = input_students
-print_header
-print(students)
-print_footer(students)
-
-
+interactive_menu

@@ -1,11 +1,11 @@
 # let's put all students into an array
 
 @box_size = 50
+@students = []
 
 def input_students()
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-  students = []
   name = gets.chomp
   while !name.empty? do
     puts "Hobby:"
@@ -14,11 +14,10 @@ def input_students()
     cob = gets.chomp
     puts "Height"
     height = gets.chomp
-    students << {name: name, cohort: :january, hobby: hobby , birth_country: cob, height: height }
-    puts "There is now #{students.count} students"
+    @students << {name: name, cohort: :january, hobby: hobby , birth_country: cob, height: height }
+    puts "There is now #{@students.count} students"
     name = gets.chomp
   end
-  return students
 end
 
 def print_header
@@ -58,12 +57,31 @@ def print_using_while(names)
   end
 end
 
+def save_students
+  file = File.open("students.csv", "w")
+  for student in @students
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
+end
+
+def load_students
+  file = File.open("students.csv", "r")
+  for line in file.readlines
+    name, cohort = line.chomp.split(",")
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
 
 def interactive_menu
-  students = []
   loop do
     puts "1. Input Students"
     puts "2. Show Students"
+    puts "3. Save students"
+    puts "4. Load students"
     puts "9. Exit"
 
     selection = gets.chomp
@@ -72,8 +90,14 @@ def interactive_menu
       students = input_students
     when "2"
       print_header
-      print(students)
-      print_footer(students)
+      print(@students)
+      print_footer(@students)
+    when "3"
+      save_students()
+      puts "File saved"
+    when "4"
+      load_students()
+      puts "File loaded"
     when "9"
       exit
     else 
